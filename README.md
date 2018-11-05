@@ -70,12 +70,14 @@ demo/
 
 ### deploy2OSS
 
+function `deploy2OSS` will return promise to recieve wheather all job done success.
+
 ```
 const deploy2OSS = require("../index")
 // Or require from package
 const deploy2OSS = require("ali-oss-deploy-with-version")
 
-deploy2OSS(aliOSSInstance, options)
+deploy2OSS(aliOSSInstance, options).then(isAllJobDoneSuccess => {})
 ```
 
 **aliOSSInstance:**
