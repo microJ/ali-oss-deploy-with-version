@@ -102,7 +102,7 @@ function deploy2OSS(OSSClient, options) {
   }
 
   // check all upload
-  everyPromisesEqTrue(uploadPromses).then(isSuccess => {
+  return everyPromisesEqTrue(uploadPromses).then(isSuccess => {
     if (!isSuccess) {
       consoleError(`not all file upload success!!`)
       return
@@ -116,7 +116,7 @@ function deploy2OSS(OSSClient, options) {
       )
     } else {
       consoleHeart(`all job is done!`)
-      return Promise.resolve(true)
+      return true
     }
   })
 }

@@ -11,7 +11,7 @@
 ## usage
 
 ```
-const deploy2OSS = require("../index")
+const deploy2OSS = require("ali-oss-deploy-with-version")
 const OSS = require("ali-oss")
 const path = require("path")
 
@@ -38,6 +38,13 @@ deploy2OSS(OSSClient, {
       content: 'hello world!'
     }
   ]
+}).then(isAllJobDoneSuccess => {
+  if(isAllJobDoneSuccess){
+    console.log('xixixi')
+  }
+  else {
+    // balabala
+  }
 })
 ```
 
