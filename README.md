@@ -2,6 +2,8 @@
 
 ## install
 
+3 ways:
+
 1. clone this repo, and require `./index.js`
 
 2. `npm install --save-dev ali-oss-deploy-with-version`
@@ -10,7 +12,7 @@
 
 ## usage
 
-```
+```js
 const deploy2OSS = require("ali-oss-deploy-with-version")
 const OSS = require("ali-oss")
 const path = require("path")
@@ -79,7 +81,7 @@ demo/
 
 function `deploy2OSS` will return promise to recieve wheather all job done success.
 
-```
+```js
 const deploy2OSS = require("../index")
 // Or require from package
 const deploy2OSS = require("ali-oss-deploy-with-version")
@@ -89,7 +91,7 @@ deploy2OSS(aliOSSInstance, options).then(isAllJobDoneSuccess => {})
 
 **aliOSSInstance:**
 
-```
+```js
 const OSS = require("ali-oss")
 const aliOSSInstance = new OSS({
   region: "",
