@@ -1,6 +1,6 @@
 # ali-oss-deploy-with-version
 
-## install
+## Install
 
 3 ways:
 
@@ -10,7 +10,7 @@
 
 3. `yarn add --dev ali-oss-deploy-with-version`
 
-## usage
+## Usage
 
 ```js
 const deploy2OSS = require("ali-oss-deploy-with-version")
@@ -115,3 +115,7 @@ const aliOSSInstance = new OSS({
 - extendedFiles:
   Optional.
   `Array<Object>`. Define content will be created and upload to ali-oss.Each element has property `filename` and `content`.`filename` is path relative to aliOSSBasePath.
+
+## License
+
+MIT
