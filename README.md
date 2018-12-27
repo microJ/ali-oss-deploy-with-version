@@ -23,7 +23,7 @@ const OSSClient = new OSS({
   accessKeyId: "",
   accessKeySecret: ""
 })
-const currentVersion = '20181106'
+const currentVersion = "20181106"
 
 deploy2OSS(OSSClient, {
   localFolderPath: path.resolve(__dirname, "../dist"),
@@ -32,19 +32,24 @@ deploy2OSS(OSSClient, {
   filesAlsoCopy2Base: [/\.html/],
   extendedFiles: [
     {
-      filename: "info.json",  // relative to aliOSSBasePath
+      filename: "info.json", // relative to aliOSSBasePath
       content: `{currentVersion:${currentVersion}}`
     },
     {
       filename: "test/index.txt",
-      content: 'hello world!'
+      content: "hello world!"
     }
-  ]
-}).then(isAllJobDoneSuccess => {
-  if(isAllJobDoneSuccess){
-    console.log('xixixi')
+  ],
+  rename(file) {
+    if (/\.js$/.test(file)) {
+      const dotIndex = file.lastIndexOf(".")
+      return file.slice(0, dotIndex) + ".hash.js"
+    }
   }
-  else {
+}).then(isAllJobDoneSuccess => {
+  if (isAllJobDoneSuccess) {
+    console.log("xixixi")
+  } else {
     // balabala
   }
 })
@@ -105,16 +110,24 @@ const aliOSSInstance = new OSS({
 
 - localFolderPath:
   Mandatory.
+
 - aliOSSBasePath:
   Mandatory.
+
 - aliOSSFolderName:
   Mandatory.
+
 - filesAlsoCopy2Base:
   Optional.
   `Array<RegExp>`. Files matched RegExp will copy to aliOSSBaseFolder.
+
 - extendedFiles:
   Optional.
   `Array<Object>`. Define content will be created and upload to ali-oss.Each element has property `filename` and `content`.`filename` is path relative to aliOSSBasePath.
+
+- rename:
+  Optional.
+  A function that receive file path relative to `localFolderPath` and return a new file path.
 
 ## License
 

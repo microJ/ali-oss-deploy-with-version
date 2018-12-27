@@ -44,7 +44,7 @@ function uploadExtendedFiles2AliOSS(extendedFiles, OSSClient, aliOSSBasePath) {
   const promises = extendedFiles.map(conf => {
     return OSSClient.put(
       joinPath(aliOSSBasePath, conf.filename),
-      new Buffer(conf.content)
+      Buffer.from(conf.content)
     ).then(res => {
       if (res.res.status !== 200) {
         consoleError(`extended file ${conf.filename} upload fail!`)
@@ -72,7 +72,8 @@ function deploy2OSS(OSSClient, options) {
     aliOSSFolderName,
     filesAlsoCopy2Base,
     localFolderPath,
-    extendedFiles
+    extendedFiles,
+    rename = () => {}
   } = options
   const aliOSSFolderPath = aliOSSBasePath
     .split("/")
@@ -84,7 +85,7 @@ function deploy2OSS(OSSClient, options) {
   const uploadPromses = []
   try {
     readdir(localFolderPath).forEach(file => {
-      const aliOSSFilePath = joinPath(aliOSSFolderPath, file)
+      const aliOSSFilePath = joinPath(aliOSSFolderPath, rename(file) || file)
       const filePath = path.resolve(localFolderPath, file)
       uploadPromses.push(uploadFile2AliOSS(OSSClient, aliOSSFilePath, filePath))
       const isAlsoCopy2BaseFile =

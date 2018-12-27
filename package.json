@@ -1,6 +1,6 @@
 {
   "name": "ali-oss-deploy-with-version",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "deploy project dist to ali-oss with version. 将项目的打包输出文件夹文件输出到阿里云oss",
   "keywords": [
     "ali-oss deploy with version",
