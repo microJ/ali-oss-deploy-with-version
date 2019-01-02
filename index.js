@@ -69,7 +69,7 @@ function deploy2OSS(OSSClient, options) {
 
   const {
     aliOSSBasePath,
-    aliOSSFolderName,
+    aliOSSFolderName = "",
     filesAlsoCopy2Base,
     localFolderPath,
     extendedFiles,
@@ -85,6 +85,7 @@ function deploy2OSS(OSSClient, options) {
   const uploadPromses = []
   try {
     readdir(localFolderPath).forEach(file => {
+      file = file.replace(/\\/g, '/')
       const aliOSSFilePath = joinPath(aliOSSFolderPath, rename(file) || file)
       const filePath = path.resolve(localFolderPath, file)
       uploadPromses.push(uploadFile2AliOSS(OSSClient, aliOSSFilePath, filePath))

@@ -115,7 +115,7 @@ const aliOSSInstance = new OSS({
   Mandatory.
 
 - aliOSSFolderName:
-  Mandatory.
+  Optional.
 
 - filesAlsoCopy2Base:
   Optional.
